@@ -142,8 +142,38 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let myStr = '';
+  const words = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  for (let i = 0; i < numberStr.length - 1; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        myStr += 'minus ';
+        break;
+      case '.':
+        myStr += 'point ';
+        break;
+      case ',':
+        myStr += 'point ';
+        break;
+      default:
+        myStr += `${words[numberStr[i]]} `;
+    }
+  }
+  myStr += words[numberStr[numberStr.length - 1]];
+  return myStr;
 }
 
 /**
@@ -229,22 +259,8 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(arr) {
-  let res = -1;
-  for (let i = 1; i < arr.length; i += 1) {
-    let sumLeft = 0;
-    let sumRight = 0;
-    for (let j = 0; j < i; j += 1) {
-      sumLeft += arr[j];
-    }
-    for (let z = i + 1; z < arr.length; z += 1) {
-      sumRight += arr[z];
-    }
-    if (sumLeft === sumRight) {
-      res = i;
-    }
-  }
-  return res;
+function getBalanceIndex(/* arr */) {
+  throw new Error('Not implemented');
 }
 
 /**
