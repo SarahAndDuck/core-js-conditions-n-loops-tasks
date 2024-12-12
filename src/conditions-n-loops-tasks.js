@@ -459,8 +459,46 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  let myStrNumberArr = [];
+  myStrNumberArr = [...`${number}`];
+
+  let myStrNumber = '';
+  for (let i = 0; i < myStrNumberArr.length; i += 1) {
+    myStrNumber += myStrNumberArr[i];
+  }
+  let item = 0;
+  for (let i = myStrNumber.length - 1; i > 0; i -= 1) {
+    if (myStrNumber[i] > myStrNumber[i - 1]) {
+      item = i;
+      break;
+    }
+  }
+  if (item === 0) return -1;
+
+  for (let j = myStrNumber.length - 1; j >= item; j -= 1) {
+    if (myStrNumber[item - 1] < myStrNumber[j]) {
+      myStrNumberArr = [...myStrNumber];
+      const storage = myStrNumberArr[item - 1];
+      myStrNumberArr[item - 1] = myStrNumberArr[j];
+      myStrNumberArr[j] = storage;
+      break;
+    }
+  }
+
+  let end = myStrNumberArr.length - 1;
+  while (item < end) {
+    const storage = myStrNumberArr[item];
+    myStrNumberArr[item] = myStrNumberArr[end];
+    myStrNumberArr[end] = storage;
+    item += 1;
+    end -= 1;
+  }
+  myStrNumber = '';
+  for (let i = 0; i < myStrNumberArr.length; i += 1) {
+    myStrNumber += myStrNumberArr[i];
+  }
+  return +myStrNumber;
 }
 
 module.exports = {
