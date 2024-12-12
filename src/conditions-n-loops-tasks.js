@@ -322,8 +322,39 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const lenght = size * size;
+  const myArr = new Array(lenght);
+  for (let i = 0; i < myArr.length; i += 1) {
+    myArr[i] = i + 1;
+  }
+
+  const myMatrix = new Array(size);
+  for (let i = 0; i < size; i += 1) {
+    myMatrix[i] = new Array(size);
+  }
+  let [top, bottom, left, right, index] = [0, size - 1, 0, size - 1, 0];
+
+  while (left <= right && top <= bottom) {
+    for (let i = left; i <= right; i += 1, index += 1) {
+      myMatrix[top][i] = myArr[index];
+    }
+    top += 1;
+
+    for (let i = top; i <= bottom; i += 1, index += 1)
+      myMatrix[i][right] = myArr[index];
+    right -= 1;
+
+    for (let i = right; i >= left; i -= 1, index += 1)
+      myMatrix[bottom][i] = myArr[index];
+    bottom -= 1;
+
+    for (let i = bottom; i >= top; i -= 1, index += 1)
+      myMatrix[i][left] = myArr[index];
+    left += 1;
+  }
+
+  return myMatrix;
 }
 
 /**
@@ -373,6 +404,21 @@ function rotateMatrix(matrix) {
  */
 function sortByAsc(/* arr */) {
   throw new Error('Not implemented');
+  // const myArr = [...arr];
+  // let isMyArrSorted;
+  // for (let i = 0; i < myArr.length; i += 1) {
+  //   isMyArrSorted = true;
+  //   for (let j = 0; j < myArr.length - i - 1; j += 1) {
+  //     if (myArr[j] > myArr[j + 1]) {
+  //       const storage = myArr[j];
+  //       myArr[j] = myArr[j + 1];
+  //       myArr[j + 1] = storage;
+  //       isMyArrSorted = false;
+  //     }
+  //   }
+  //   if (isMyArrSorted) return myArr;
+  // }
+  // return myArr;
 }
 
 /**
